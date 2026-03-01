@@ -1,5 +1,5 @@
 /**
- * WC Flavor: Books — Admin JS
+ * Shelvd for WooCommerce — Admin JS
  *
  * Handles ISBN lookup button in the product editor.
  */
@@ -7,8 +7,8 @@
 	'use strict';
 
 	var $isbnField   = $('#_book_isbn');
-	var $lookupBtn   = $('#wc-flavor-books-isbn-lookup');
-	var $statusEl    = $('#wc-flavor-books-isbn-status');
+	var $lookupBtn   = $('#shelvd-isbn-lookup');
+	var $statusEl    = $('#shelvd-isbn-status');
 
 	if (!$isbnField.length || !$lookupBtn.length) {
 		return;
@@ -19,22 +19,22 @@
 
 		var isbn = $.trim($isbnField.val());
 		if (!isbn) {
-			$statusEl.text(wcFlavorBooksAdmin.i18n.invalidIsbn).removeClass('success').addClass('error');
+			$statusEl.text(shelvdAdmin.i18n.invalidIsbn).removeClass('success').addClass('error');
 			return;
 		}
 
 		$lookupBtn.prop('disabled', true);
-		$statusEl.text(wcFlavorBooksAdmin.i18n.lookingUp).removeClass('success error');
+		$statusEl.text(shelvdAdmin.i18n.lookingUp).removeClass('success error');
 
-		$.post(wcFlavorBooksAdmin.ajaxUrl, {
-			action: 'wc_flavor_books_isbn_lookup',
-			nonce:  wcFlavorBooksAdmin.nonce,
+		$.post(shelvdAdmin.ajaxUrl, {
+			action: 'shelvd_isbn_lookup',
+			nonce:  shelvdAdmin.nonce,
 			isbn:   isbn
 		}, function (response) {
 			$lookupBtn.prop('disabled', false);
 
 			if (!response.success || !response.data) {
-				$statusEl.text(wcFlavorBooksAdmin.i18n.notFound).removeClass('success').addClass('error');
+				$statusEl.text(shelvdAdmin.i18n.notFound).removeClass('success').addClass('error');
 				return;
 			}
 
@@ -63,11 +63,11 @@
 				}
 			}
 
-			$statusEl.text(wcFlavorBooksAdmin.i18n.found).removeClass('error').addClass('success');
+			$statusEl.text(shelvdAdmin.i18n.found).removeClass('error').addClass('success');
 
 		}).fail(function () {
 			$lookupBtn.prop('disabled', false);
-			$statusEl.text(wcFlavorBooksAdmin.i18n.error).removeClass('success').addClass('error');
+			$statusEl.text(shelvdAdmin.i18n.error).removeClass('success').addClass('error');
 		});
 	});
 

@@ -1,12 +1,12 @@
 /**
- * WC Flavor: Books — Frontend Filters JS
+ * Shelvd for WooCommerce — Frontend Filters JS
  *
  * Handles AJAX-based filtering on shop/archive pages.
  */
 (function ($) {
 	'use strict';
 
-	var $filterLists = $('.wc-flavor-books-filter-list');
+	var $filterLists = $('.shelvd-filter-list');
 	if (!$filterLists.length) {
 		return;
 	}
@@ -43,13 +43,13 @@
 		$productsWrap.css('opacity', 0.5);
 
 		var data = {
-			action: 'wc_flavor_books_filter',
-			nonce:  wcFlavorBooks.nonce
+			action: 'shelvd_filter',
+			nonce:  shelvd.nonce
 		};
 
 		$.extend(data, activeFilters);
 
-		$.post(wcFlavorBooks.ajaxUrl, data, function (response) {
+		$.post(shelvd.ajaxUrl, data, function (response) {
 			if (response.success && response.data.html) {
 				$productsWrap.replaceWith(response.data.html);
 			}

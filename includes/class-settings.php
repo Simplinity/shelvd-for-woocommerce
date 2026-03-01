@@ -2,14 +2,14 @@
 /**
  * Plugin Settings.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books;
+namespace Shelvd;
 
 defined( 'ABSPATH' ) || exit;
 
-use WC_Flavor_Books\Traits\Singleton;
+use Shelvd\Traits\Singleton;
 
 /**
  * Adds a settings section under WooCommerce > Settings > Products.
@@ -33,7 +33,7 @@ class Settings {
 	 * @return array
 	 */
 	public function add_section( $sections ) {
-		$sections['wc_flavor_books'] = __( 'Books', 'wc-flavor-books' );
+		$sections['shelvd'] = __( 'Books', 'shelvd' );
 		return $sections;
 	}
 
@@ -45,77 +45,77 @@ class Settings {
 	 * @return array
 	 */
 	public function get_settings( $settings, $current_section ) {
-		if ( 'wc_flavor_books' !== $current_section ) {
+		if ( 'shelvd' !== $current_section ) {
 			return $settings;
 		}
 
 		return array(
 			// Section title.
 			array(
-				'title' => __( 'WC Flavor: Books', 'wc-flavor-books' ),
+				'title' => __( 'Shelvd for WooCommerce', 'shelvd' ),
 				'type'  => 'title',
-				'desc'  => __( 'Configure book-specific features for your WooCommerce store.', 'wc-flavor-books' ),
-				'id'    => 'wc_flavor_books_options',
+				'desc'  => __( 'Configure book-specific features for your WooCommerce store.', 'shelvd' ),
+				'id'    => 'shelvd_options',
 			),
 
 			// Archives.
 			array(
-				'title'   => __( 'Author Archives', 'wc-flavor-books' ),
-				'desc'    => __( 'Enable browsable author archive pages.', 'wc-flavor-books' ),
-				'id'      => 'wc_flavor_books_enable_author_archives',
+				'title'   => __( 'Author Archives', 'shelvd' ),
+				'desc'    => __( 'Enable browsable author archive pages.', 'shelvd' ),
+				'id'      => 'shelvd_enable_author_archives',
 				'default' => '1',
 				'type'    => 'checkbox',
 			),
 			array(
-				'title'   => __( 'Publisher Archives', 'wc-flavor-books' ),
-				'desc'    => __( 'Enable browsable publisher archive pages.', 'wc-flavor-books' ),
-				'id'      => 'wc_flavor_books_enable_publisher_archives',
+				'title'   => __( 'Publisher Archives', 'shelvd' ),
+				'desc'    => __( 'Enable browsable publisher archive pages.', 'shelvd' ),
+				'id'      => 'shelvd_enable_publisher_archives',
 				'default' => '1',
 				'type'    => 'checkbox',
 			),
 			array(
-				'title'   => __( 'Language Archives', 'wc-flavor-books' ),
-				'desc'    => __( 'Enable browsable language archive pages.', 'wc-flavor-books' ),
-				'id'      => 'wc_flavor_books_enable_language_archives',
+				'title'   => __( 'Language Archives', 'shelvd' ),
+				'desc'    => __( 'Enable browsable language archive pages.', 'shelvd' ),
+				'id'      => 'shelvd_enable_language_archives',
 				'default' => '1',
 				'type'    => 'checkbox',
 			),
 
 			// SEO.
 			array(
-				'title'   => __( 'Schema.org Markup', 'wc-flavor-books' ),
-				'desc'    => __( 'Output structured Book data for search engines.', 'wc-flavor-books' ),
-				'id'      => 'wc_flavor_books_enable_schema_markup',
+				'title'   => __( 'Schema.org Markup', 'shelvd' ),
+				'desc'    => __( 'Output structured Book data for search engines.', 'shelvd' ),
+				'id'      => 'shelvd_enable_schema_markup',
 				'default' => '1',
 				'type'    => 'checkbox',
 			),
 
 			// Search.
 			array(
-				'title'   => __( 'Extended Search', 'wc-flavor-books' ),
-				'desc'    => __( 'Include author names and ISBN in product search results.', 'wc-flavor-books' ),
-				'id'      => 'wc_flavor_books_enable_search_extension',
+				'title'   => __( 'Extended Search', 'shelvd' ),
+				'desc'    => __( 'Include author names and ISBN in product search results.', 'shelvd' ),
+				'id'      => 'shelvd_enable_search_extension',
 				'default' => '1',
 				'type'    => 'checkbox',
 			),
 
 			// ISBN Lookup.
 			array(
-				'title'   => __( 'ISBN Lookup Service', 'wc-flavor-books' ),
-				'desc'    => __( 'Primary service for ISBN lookups in the product editor.', 'wc-flavor-books' ),
-				'id'      => 'wc_flavor_books_isbn_lookup_service',
+				'title'   => __( 'ISBN Lookup Service', 'shelvd' ),
+				'desc'    => __( 'Primary service for ISBN lookups in the product editor.', 'shelvd' ),
+				'id'      => 'shelvd_isbn_lookup_service',
 				'default' => 'google',
 				'type'    => 'select',
 				'options' => array(
-					'google'       => __( 'Google Books (recommended)', 'wc-flavor-books' ),
-					'open_library' => __( 'Open Library', 'wc-flavor-books' ),
+					'google'       => __( 'Google Books (recommended)', 'shelvd' ),
+					'open_library' => __( 'Open Library', 'shelvd' ),
 				),
 			),
 
 			// Section end.
 			array(
 				'type' => 'sectionend',
-				'id'   => 'wc_flavor_books_options',
+				'id'   => 'shelvd_options',
 			),
 		);
 	}

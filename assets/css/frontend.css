@@ -1,56 +1,56 @@
 /**
- * WC Flavor: Books — Frontend Styles
+ * Shelvd for WooCommerce — Frontend Styles
  */
 
 /* Book metadata on product page */
-.wc-flavor-books-metadata {
+.shelvd-metadata {
 	margin: 1.5em 0;
 	padding: 1em 0;
 	border-top: 1px solid #e5e5e5;
 }
 
-.wc-flavor-books-metadata .book-field {
+.shelvd-metadata .book-field {
 	display: flex;
 	padding: 0.35em 0;
 	font-size: 0.9em;
 	line-height: 1.6;
 }
 
-.wc-flavor-books-metadata .book-field-label {
+.shelvd-metadata .book-field-label {
 	font-weight: 600;
 	min-width: 120px;
 	color: #333;
 }
 
-.wc-flavor-books-metadata .book-field-value {
+.shelvd-metadata .book-field-value {
 	color: #555;
 }
 
-.wc-flavor-books-metadata .book-field-value a {
+.shelvd-metadata .book-field-value a {
 	color: inherit;
 	text-decoration: underline;
 	text-decoration-color: #ccc;
 	text-underline-offset: 2px;
 }
 
-.wc-flavor-books-metadata .book-field-value a:hover {
+.shelvd-metadata .book-field-value a:hover {
 	color: #000;
 	text-decoration-color: #000;
 }
 
 /* Filter widgets */
-.wc-flavor-books-filter-list {
+.shelvd-filter-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 
-.wc-flavor-books-filter-list li {
+.shelvd-filter-list li {
 	margin: 0;
 	padding: 0;
 }
 
-.wc-flavor-books-filter-list li a {
+.shelvd-filter-list li a {
 	display: block;
 	padding: 0.4em 0;
 	color: #333;
@@ -59,21 +59,21 @@
 	transition: color 0.15s;
 }
 
-.wc-flavor-books-filter-list li a:hover {
+.shelvd-filter-list li a:hover {
 	color: #000;
 }
 
-.wc-flavor-books-filter-list li.active a {
+.shelvd-filter-list li.active a {
 	font-weight: 700;
 }
 
-.wc-flavor-books-filter-list .count {
+.shelvd-filter-list .count {
 	color: #999;
 	font-size: 0.85em;
 }
 
 /* Book details tab */
-.woocommerce-Tabs-panel--book_details .wc-flavor-books-metadata {
+.woocommerce-Tabs-panel--book_details .shelvd-metadata {
 	border-top: none;
 	margin-top: 0;
 	padding-top: 0;

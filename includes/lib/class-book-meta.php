@@ -2,10 +2,10 @@
 /**
  * Book Meta helper.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Lib;
+namespace Shelvd\Lib;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -192,12 +192,12 @@ class Book_Meta {
 	 */
 	public static function get_condition_label( $condition ) {
 		$labels = array(
-			'new'       => __( 'New', 'wc-flavor-books' ),
-			'like-new'  => __( 'Like New', 'wc-flavor-books' ),
-			'very-good' => __( 'Very Good', 'wc-flavor-books' ),
-			'good'      => __( 'Good', 'wc-flavor-books' ),
-			'fair'      => __( 'Fair', 'wc-flavor-books' ),
-			'poor'      => __( 'Poor', 'wc-flavor-books' ),
+			'new'       => __( 'New', 'shelvd' ),
+			'like-new'  => __( 'Like New', 'shelvd' ),
+			'very-good' => __( 'Very Good', 'shelvd' ),
+			'good'      => __( 'Good', 'shelvd' ),
+			'fair'      => __( 'Fair', 'shelvd' ),
+			'poor'      => __( 'Poor', 'shelvd' ),
 		);
 
 		return $labels[ $condition ] ?? ucfirst( str_replace( '-', ' ', $condition ) );
@@ -211,11 +211,11 @@ class Book_Meta {
 	 */
 	public static function get_format_label( $format ) {
 		$labels = array(
-			'hardcover' => __( 'Hardcover', 'wc-flavor-books' ),
-			'paperback' => __( 'Paperback', 'wc-flavor-books' ),
-			'pocket'    => __( 'Pocket', 'wc-flavor-books' ),
-			'ebook'     => __( 'E-book', 'wc-flavor-books' ),
-			'audiobook' => __( 'Audiobook', 'wc-flavor-books' ),
+			'hardcover' => __( 'Hardcover', 'shelvd' ),
+			'paperback' => __( 'Paperback', 'shelvd' ),
+			'pocket'    => __( 'Pocket', 'shelvd' ),
+			'ebook'     => __( 'E-book', 'shelvd' ),
+			'audiobook' => __( 'Audiobook', 'shelvd' ),
 		);
 
 		return $labels[ $format ] ?? ucfirst( $format );

@@ -2,10 +2,10 @@
 /**
  * Database Schema.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Database;
+namespace Shelvd\Database;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -26,12 +26,12 @@ class Schema {
 	 */
 	private static function set_default_options() {
 		$defaults = array(
-			'wc_flavor_books_enable_author_archives'    => 1,
-			'wc_flavor_books_enable_publisher_archives'  => 1,
-			'wc_flavor_books_enable_language_archives'   => 1,
-			'wc_flavor_books_enable_schema_markup'       => 1,
-			'wc_flavor_books_enable_search_extension'    => 1,
-			'wc_flavor_books_isbn_lookup_service'        => 'google',
+			'shelvd_enable_author_archives'    => 1,
+			'shelvd_enable_publisher_archives'  => 1,
+			'shelvd_enable_language_archives'   => 1,
+			'shelvd_enable_schema_markup'       => 1,
+			'shelvd_enable_search_extension'    => 1,
+			'shelvd_isbn_lookup_service'        => 'google',
 		);
 
 		foreach ( $defaults as $key => $value ) {

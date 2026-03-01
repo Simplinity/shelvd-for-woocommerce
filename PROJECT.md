@@ -1,8 +1,8 @@
-# WC Flavor: Books — Project Document
+# Shelvd for WooCommerce — Project Document
 
-## Wat is WC Flavor: Books?
+## Wat is Shelvd for WooCommerce?
 
-WC Flavor: Books is een WooCommerce-plugin die een gewone webshop transformeert in een professionele online boekenwinkel. In plaats van boekgegevens los in productbeschrijvingen te stoppen, biedt de plugin gestructureerde velden, eigen taxonomieën, en browsing-features die boeken vindbaar maken en de winkel een professionele uitstraling geven.
+Shelvd for WooCommerce is een WooCommerce-plugin die een gewone webshop transformeert in een professionele online boekenwinkel. In plaats van boekgegevens los in productbeschrijvingen te stoppen, biedt de plugin gestructureerde velden, eigen taxonomieën, en browsing-features die boeken vindbaar maken en de winkel een professionele uitstraling geven.
 
 De plugin is ontworpen als een commercieel product — verkoopbaar aan elke WooCommerce-boekenwinkel wereldwijd.
 
@@ -34,7 +34,7 @@ Dit levert ook SEO-voordeel op: elke taxonomie-pagina heeft een unieke URL.
 - Metadata-blok onder de prijs met auteur, uitgever, ISBN, jaar, pagina's, formaat en conditie
 - Extra "Book Details" tab bij de productbeschrijving
 - Schema.org Book JSON-LD markup voor zoekmachines
-- Template is overridable via het thema (`yourtheme/wc-flavor-books/product/book-metadata.php`)
+- Template is overridable via het thema (`yourtheme/shelvd/product/book-metadata.php`)
 
 ### Uitgebreid zoeken
 Klanten kunnen zoeken op auteursnaam of ISBN — niet alleen op producttitel. Dit werkt binnen de standaard WooCommerce-zoekfunctie.
@@ -46,8 +46,8 @@ Sidebar-widgets waarmee bezoekers de shop kunnen filteren op auteur, uitgever en
 - Alle boekvelden beschikbaar op het standaard WooCommerce product-endpoint (`book_data` field)
 - Taxonomie-velden (`book_authors`, `book_publishers`, `book_languages`)
 - Custom endpoints:
-  - `GET /wc-flavor-books/v1/products/by-author/{id}` — Boeken per auteur
-  - `GET /wc-flavor-books/v1/search?s=...&author=...&isbn=...` — Zoeken op meerdere criteria
+  - `GET /shelvd/v1/products/by-author/{id}` — Boeken per auteur
+  - `GET /shelvd/v1/search?s=...&author=...&isbn=...` — Zoeken op meerdere criteria
 
 ### Instellingen
 Onder WooCommerce > Settings > Products > Books:
@@ -60,8 +60,8 @@ Onder WooCommerce > Settings > Products > Books:
 ## Huidige bestandsstructuur
 
 ```
-wc-flavor-books/
-├── wc-flavor-books.php                          # Main plugin file, constants, activation hooks
+shelvd/
+├── shelvd.php                                    # Main plugin file, constants, activation hooks
 ├── LICENSE                                       # GPL v2
 ├── readme.txt                                    # WordPress.org readme
 ├── PROJECT.md                                    # Dit bestand
@@ -112,8 +112,8 @@ wc-flavor-books/
 - **Minimum WooCommerce:** 7.0
 - **Minimum PHP:** 7.4
 - **HPOS compatibel:** Ja (declaratie in class-plugin.php)
-- **Namespace:** `WC_Flavor_Books`
-- **Text domain:** `wc-flavor-books`
+- **Namespace:** `Shelvd`
+- **Text domain:** `shelvd`
 - **Meta prefix:** `_book_` (isbn, pages, year, edition, condition, format, original_language)
 - **Taxonomies:** `book_author`, `book_publisher`, `book_language`
 - **Licentie:** GPL v2 or later
@@ -187,7 +187,7 @@ Nette cleanup bij verwijdering. Optie om alle data (meta, taxonomies, opties) te
 #### 3.2 POT-bestand
 Vertaaltemplate genereren zodat de plugin in elke taal vertaald kan worden.
 
-**Bestanden:** `languages/wc-flavor-books.pot`
+**Bestanden:** `languages/shelvd.pot`
 
 #### 3.3 Input validatie & sanitization audit
 Alle user input in de product editor, REST API, en AJAX handlers moet streng gevalideerd worden. Audit op XSS, SQL injection, CSRF. WordPress coding standards (WPCS) doorlopen met PHP_CodeSniffer.

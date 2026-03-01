@@ -2,10 +2,10 @@
 /**
  * Singleton trait.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Traits;
+namespace Shelvd\Traits;
 
 defined( 'ABSPATH' ) || exit;
 

@@ -2,10 +2,10 @@
 /**
  * ISBN Validator.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Lib;
+namespace Shelvd\Lib;
 
 defined( 'ABSPATH' ) || exit;
 

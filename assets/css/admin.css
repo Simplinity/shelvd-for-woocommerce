@@ -1,5 +1,5 @@
 /**
- * WC Flavor: Books — Admin Styles
+ * Shelvd for WooCommerce — Admin Styles
  */
 
 /* Book Details tab icon */
@@ -24,17 +24,17 @@
 }
 
 /* ISBN lookup button */
-.wc-flavor-books-isbn-lookup {
+.shelvd-isbn-lookup {
 	display: inline-block;
 	margin-left: 8px;
 	vertical-align: middle;
 }
 
-.wc-flavor-books-isbn-lookup .button {
+.shelvd-isbn-lookup .button {
 	vertical-align: middle;
 }
 
-.wc-flavor-books-isbn-status {
+.shelvd-isbn-status {
 	display: inline-block;
 	margin-left: 8px;
 	font-style: italic;
@@ -42,10 +42,10 @@
 	vertical-align: middle;
 }
 
-.wc-flavor-books-isbn-status.success {
+.shelvd-isbn-status.success {
 	color: #46b450;
 }
 
-.wc-flavor-books-isbn-status.error {
+.shelvd-isbn-status.error {
 	color: #dc3232;
 }

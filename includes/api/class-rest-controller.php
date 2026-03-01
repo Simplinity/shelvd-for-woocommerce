@@ -2,15 +2,15 @@
 /**
  * REST API Controller.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Api;
+namespace Shelvd\Api;
 
 defined( 'ABSPATH' ) || exit;
 
-use WC_Flavor_Books\Lib\Book_Meta;
-use WC_Flavor_Books\Traits\Singleton;
+use Shelvd\Lib\Book_Meta;
+use Shelvd\Traits\Singleton;
 
 /**
  * Extends WooCommerce REST API with book fields and adds custom endpoints.
@@ -24,7 +24,7 @@ class Rest_Controller {
 	 *
 	 * @var string
 	 */
-	const NAMESPACE_V1 = 'wc-flavor-books/v1';
+	const NAMESPACE_V1 = 'shelvd/v1';
 
 	/**
 	 * Constructor.

@@ -2,14 +2,14 @@
 /**
  * ISBN Lookup service.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Admin;
+namespace Shelvd\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
-use WC_Flavor_Books\Lib\ISBN_Validator;
+use Shelvd\Lib\ISBN_Validator;
 
 /**
  * Looks up book data from Google Books and Open Library APIs.
@@ -20,27 +20,27 @@ class ISBN_Lookup {
 	 * Constructor — registers AJAX handler.
 	 */
 	public function __construct() {
-		add_action( 'wp_ajax_wc_flavor_books_isbn_lookup', array( $this, 'ajax_lookup' ) );
+		add_action( 'wp_ajax_shelvd_isbn_lookup', array( $this, 'ajax_lookup' ) );
 	}
 
 	/**
 	 * Handle AJAX ISBN lookup.
 	 */
 	public function ajax_lookup() {
-		check_ajax_referer( 'wc-flavor-books-admin' );
+		check_ajax_referer( 'shelvd-admin' );
 
 		if ( ! current_user_can( 'edit_products' ) ) {
-			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'wc-flavor-books' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Permission denied.', 'shelvd' ) ) );
 		}
 
 		$isbn = ISBN_Validator::clean( sanitize_text_field( wp_unslash( $_POST['isbn'] ?? '' ) ) );
 
 		if ( empty( $isbn ) ) {
-			wp_send_json_error( array( 'message' => __( 'ISBN is required.', 'wc-flavor-books' ) ) );
+			wp_send_json_error( array( 'message' => __( 'ISBN is required.', 'shelvd' ) ) );
 		}
 
 		if ( ! ISBN_Validator::is_valid( $isbn ) ) {
-			wp_send_json_error( array( 'message' => __( 'Invalid ISBN format.', 'wc-flavor-books' ) ) );
+			wp_send_json_error( array( 'message' => __( 'Invalid ISBN format.', 'shelvd' ) ) );
 		}
 
 		// Try Google Books first.
@@ -52,7 +52,7 @@ class ISBN_Lookup {
 		}
 
 		if ( empty( $data ) ) {
-			wp_send_json_error( array( 'message' => __( 'No data found for this ISBN.', 'wc-flavor-books' ) ) );
+			wp_send_json_error( array( 'message' => __( 'No data found for this ISBN.', 'shelvd' ) ) );
 		}
 
 		$data['isbn']   = $isbn;

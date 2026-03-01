@@ -1,4 +1,4 @@
-=== WC Flavor: Books ===
+=== Shelvd for WooCommerce ===
 Contributors: simplinity
 Tags: woocommerce, books, bookshop, isbn, book metadata
 Requires at least: 6.0
@@ -12,7 +12,7 @@ Transform your WooCommerce store into a professional online bookshop with struct
 
 == Description ==
 
-**WC Flavor: Books** adds everything a bookshop needs to WooCommerce. Instead of cramming book details into product descriptions, this plugin provides dedicated fields, taxonomies, and browsing features that make your books discoverable and your store professional.
+**Shelvd for WooCommerce** adds everything a bookshop needs to WooCommerce. Instead of cramming book details into product descriptions, this plugin provides dedicated fields, taxonomies, and browsing features that make your books discoverable and your store professional.
 
 = Key Features =
 
@@ -41,7 +41,7 @@ Transform your WooCommerce store into a professional online bookshop with struct
 
 == Installation ==
 
-1. Upload the `wc-flavor-books` folder to `/wp-content/plugins/`.
+1. Upload the `shelvd` folder to `/wp-content/plugins/`.
 2. Activate the plugin through the "Plugins" menu in WordPress.
 3. Go to WooCommerce > Settings > Products > Books to configure.
 4. Edit any product and use the "Book Details" tab to add book metadata.
@@ -50,7 +50,7 @@ Transform your WooCommerce store into a professional online bookshop with struct
 
 = Can I override the book metadata template? =
 
-Yes. Copy `templates/product/book-metadata.php` from the plugin to `yourtheme/wc-flavor-books/product/book-metadata.php` and customize it.
+Yes. Copy `templates/product/book-metadata.php` from the plugin to `yourtheme/shelvd/product/book-metadata.php` and customize it.
 
 = Does it work with WooCommerce HPOS? =
 

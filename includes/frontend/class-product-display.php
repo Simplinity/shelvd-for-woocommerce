@@ -2,15 +2,15 @@
 /**
  * Frontend product display.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Frontend;
+namespace Shelvd\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
-use WC_Flavor_Books\Lib\Book_Meta;
-use WC_Flavor_Books\Traits\Singleton;
+use Shelvd\Lib\Book_Meta;
+use Shelvd\Traits\Singleton;
 
 /**
  * Displays book metadata on product pages and adds Schema.org markup.
@@ -28,7 +28,7 @@ class Product_Display {
 		add_action( 'wp_head', array( $this, 'schema_markup' ) );
 
 		// Extend search.
-		if ( get_option( 'wc_flavor_books_enable_search_extension', 1 ) ) {
+		if ( get_option( 'shelvd_enable_search_extension', 1 ) ) {
 			add_filter( 'posts_search', array( $this, 'extend_search' ), 10, 2 );
 		}
 	}
@@ -53,10 +53,10 @@ class Product_Display {
 			return;
 		}
 
-		$template = WC_FLAVOR_BOOKS_PLUGIN_DIR . 'templates/product/book-metadata.php';
+		$template = SHELVD_PLUGIN_DIR . 'templates/product/book-metadata.php';
 
 		// Allow theme override.
-		$theme_template = locate_template( 'wc-flavor-books/product/book-metadata.php' );
+		$theme_template = locate_template( 'shelvd/product/book-metadata.php' );
 		if ( $theme_template ) {
 			$template = $theme_template;
 		}
@@ -78,7 +78,7 @@ class Product_Display {
 		}
 
 		$tabs['book_details'] = array(
-			'title'    => __( 'Book Details', 'wc-flavor-books' ),
+			'title'    => __( 'Book Details', 'shelvd' ),
 			'priority' => 15,
 			'callback' => array( $this, 'render_book_tab' ),
 		);
@@ -98,8 +98,8 @@ class Product_Display {
 		$publishers = wp_get_post_terms( $product_id, 'book_publisher' );
 		$languages  = wp_get_post_terms( $product_id, 'book_language' );
 
-		$template = WC_FLAVOR_BOOKS_PLUGIN_DIR . 'templates/product/book-metadata.php';
-		$theme_template = locate_template( 'wc-flavor-books/product/book-metadata.php' );
+		$template = SHELVD_PLUGIN_DIR . 'templates/product/book-metadata.php';
+		$theme_template = locate_template( 'shelvd/product/book-metadata.php' );
 		if ( $theme_template ) {
 			$template = $theme_template;
 		}
@@ -111,7 +111,7 @@ class Product_Display {
 	 * Output Schema.org Book markup.
 	 */
 	public function schema_markup() {
-		if ( ! is_product() || ! get_option( 'wc_flavor_books_enable_schema_markup', 1 ) ) {
+		if ( ! is_product() || ! get_option( 'shelvd_enable_schema_markup', 1 ) ) {
 			return;
 		}
 

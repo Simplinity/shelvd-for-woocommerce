@@ -2,10 +2,10 @@
 /**
  * Taxonomy Manager.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Database;
+namespace Shelvd\Database;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -29,16 +29,16 @@ class Taxonomy_Manager {
 	private static function register_book_author() {
 		register_taxonomy( 'book_author', 'product', array(
 			'labels'            => array(
-				'name'          => _x( 'Book Authors', 'taxonomy general name', 'wc-flavor-books' ),
-				'singular_name' => _x( 'Book Author', 'taxonomy singular name', 'wc-flavor-books' ),
-				'search_items'  => __( 'Search Authors', 'wc-flavor-books' ),
-				'all_items'     => __( 'All Authors', 'wc-flavor-books' ),
-				'edit_item'     => __( 'Edit Author', 'wc-flavor-books' ),
-				'update_item'   => __( 'Update Author', 'wc-flavor-books' ),
-				'add_new_item'  => __( 'Add New Author', 'wc-flavor-books' ),
-				'new_item_name' => __( 'New Author Name', 'wc-flavor-books' ),
-				'menu_name'     => __( 'Authors', 'wc-flavor-books' ),
-				'not_found'     => __( 'No authors found.', 'wc-flavor-books' ),
+				'name'          => _x( 'Book Authors', 'taxonomy general name', 'shelvd' ),
+				'singular_name' => _x( 'Book Author', 'taxonomy singular name', 'shelvd' ),
+				'search_items'  => __( 'Search Authors', 'shelvd' ),
+				'all_items'     => __( 'All Authors', 'shelvd' ),
+				'edit_item'     => __( 'Edit Author', 'shelvd' ),
+				'update_item'   => __( 'Update Author', 'shelvd' ),
+				'add_new_item'  => __( 'Add New Author', 'shelvd' ),
+				'new_item_name' => __( 'New Author Name', 'shelvd' ),
+				'menu_name'     => __( 'Authors', 'shelvd' ),
+				'not_found'     => __( 'No authors found.', 'shelvd' ),
 			),
 			'public'            => true,
 			'hierarchical'      => false,
@@ -66,16 +66,16 @@ class Taxonomy_Manager {
 	private static function register_book_publisher() {
 		register_taxonomy( 'book_publisher', 'product', array(
 			'labels'            => array(
-				'name'          => _x( 'Publishers', 'taxonomy general name', 'wc-flavor-books' ),
-				'singular_name' => _x( 'Publisher', 'taxonomy singular name', 'wc-flavor-books' ),
-				'search_items'  => __( 'Search Publishers', 'wc-flavor-books' ),
-				'all_items'     => __( 'All Publishers', 'wc-flavor-books' ),
-				'edit_item'     => __( 'Edit Publisher', 'wc-flavor-books' ),
-				'update_item'   => __( 'Update Publisher', 'wc-flavor-books' ),
-				'add_new_item'  => __( 'Add New Publisher', 'wc-flavor-books' ),
-				'new_item_name' => __( 'New Publisher Name', 'wc-flavor-books' ),
-				'menu_name'     => __( 'Publishers', 'wc-flavor-books' ),
-				'not_found'     => __( 'No publishers found.', 'wc-flavor-books' ),
+				'name'          => _x( 'Publishers', 'taxonomy general name', 'shelvd' ),
+				'singular_name' => _x( 'Publisher', 'taxonomy singular name', 'shelvd' ),
+				'search_items'  => __( 'Search Publishers', 'shelvd' ),
+				'all_items'     => __( 'All Publishers', 'shelvd' ),
+				'edit_item'     => __( 'Edit Publisher', 'shelvd' ),
+				'update_item'   => __( 'Update Publisher', 'shelvd' ),
+				'add_new_item'  => __( 'Add New Publisher', 'shelvd' ),
+				'new_item_name' => __( 'New Publisher Name', 'shelvd' ),
+				'menu_name'     => __( 'Publishers', 'shelvd' ),
+				'not_found'     => __( 'No publishers found.', 'shelvd' ),
 			),
 			'public'            => true,
 			'hierarchical'      => false,
@@ -103,16 +103,16 @@ class Taxonomy_Manager {
 	private static function register_book_language() {
 		register_taxonomy( 'book_language', 'product', array(
 			'labels'            => array(
-				'name'          => _x( 'Languages', 'taxonomy general name', 'wc-flavor-books' ),
-				'singular_name' => _x( 'Language', 'taxonomy singular name', 'wc-flavor-books' ),
-				'search_items'  => __( 'Search Languages', 'wc-flavor-books' ),
-				'all_items'     => __( 'All Languages', 'wc-flavor-books' ),
-				'edit_item'     => __( 'Edit Language', 'wc-flavor-books' ),
-				'update_item'   => __( 'Update Language', 'wc-flavor-books' ),
-				'add_new_item'  => __( 'Add New Language', 'wc-flavor-books' ),
-				'new_item_name' => __( 'New Language Name', 'wc-flavor-books' ),
-				'menu_name'     => __( 'Languages', 'wc-flavor-books' ),
-				'not_found'     => __( 'No languages found.', 'wc-flavor-books' ),
+				'name'          => _x( 'Languages', 'taxonomy general name', 'shelvd' ),
+				'singular_name' => _x( 'Language', 'taxonomy singular name', 'shelvd' ),
+				'search_items'  => __( 'Search Languages', 'shelvd' ),
+				'all_items'     => __( 'All Languages', 'shelvd' ),
+				'edit_item'     => __( 'Edit Language', 'shelvd' ),
+				'update_item'   => __( 'Update Language', 'shelvd' ),
+				'add_new_item'  => __( 'Add New Language', 'shelvd' ),
+				'new_item_name' => __( 'New Language Name', 'shelvd' ),
+				'menu_name'     => __( 'Languages', 'shelvd' ),
+				'not_found'     => __( 'No languages found.', 'shelvd' ),
 			),
 			'public'            => true,
 			'hierarchical'      => false,

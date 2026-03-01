@@ -2,16 +2,16 @@
 /**
  * Product Editor integration.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Admin;
+namespace Shelvd\Admin;
 
 defined( 'ABSPATH' ) || exit;
 
-use WC_Flavor_Books\Lib\Book_Meta;
-use WC_Flavor_Books\Database\Taxonomy_Manager;
-use WC_Flavor_Books\Traits\Singleton;
+use Shelvd\Lib\Book_Meta;
+use Shelvd\Database\Taxonomy_Manager;
+use Shelvd\Traits\Singleton;
 
 /**
  * Adds "Book Details" tab to WooCommerce product editor.
@@ -37,8 +37,8 @@ class Product_Editor {
 	 */
 	public function add_book_tab( $tabs ) {
 		$tabs['book_details'] = array(
-			'label'    => __( 'Book Details', 'wc-flavor-books' ),
-			'target'   => 'wc_flavor_books_panel',
+			'label'    => __( 'Book Details', 'shelvd' ),
+			'target'   => 'shelvd_panel',
 			'class'    => array( 'show_if_simple', 'show_if_variable', 'show_if_grouped', 'show_if_external' ),
 			'priority' => 25,
 		);
@@ -55,16 +55,16 @@ class Product_Editor {
 		$product_id = $post->ID;
 		$meta       = Book_Meta::get_all( $product_id );
 
-		echo '<div id="wc_flavor_books_panel" class="panel woocommerce_options_panel">';
+		echo '<div id="shelvd_panel" class="panel woocommerce_options_panel">';
 		echo '<div class="options_group">';
 
 		// ISBN + lookup button.
 		echo '<p class="form-field _book_isbn_field">';
-		echo '<label for="_book_isbn">' . esc_html__( 'ISBN', 'wc-flavor-books' ) . '</label>';
+		echo '<label for="_book_isbn">' . esc_html__( 'ISBN', 'shelvd' ) . '</label>';
 		echo '<span class="wrap">';
 		echo '<input type="text" id="_book_isbn" name="_book_isbn" value="' . esc_attr( $meta['isbn'] ?? '' ) . '" placeholder="978-..." style="width:60%;" />';
-		echo ' <button type="button" class="button" id="wc-flavor-books-isbn-lookup">' . esc_html__( 'Look up', 'wc-flavor-books' ) . '</button>';
-		echo ' <span id="wc-flavor-books-isbn-status" style="margin-left:8px;"></span>';
+		echo ' <button type="button" class="button" id="shelvd-isbn-lookup">' . esc_html__( 'Look up', 'shelvd' ) . '</button>';
+		echo ' <span id="shelvd-isbn-status" style="margin-left:8px;"></span>';
 		echo '</span>';
 		echo '</p>';
 
@@ -74,8 +74,8 @@ class Product_Editor {
 		$authors = wp_get_post_terms( $product_id, 'book_author', array( 'fields' => 'names' ) );
 		woocommerce_wp_text_input( array(
 			'id'          => '_book_author_names',
-			'label'       => __( 'Author(s)', 'wc-flavor-books' ),
-			'description' => __( 'Comma-separated for multiple authors.', 'wc-flavor-books' ),
+			'label'       => __( 'Author(s)', 'shelvd' ),
+			'description' => __( 'Comma-separated for multiple authors.', 'shelvd' ),
 			'desc_tip'    => true,
 			'value'       => is_wp_error( $authors ) ? '' : implode( ', ', $authors ),
 		) );
@@ -84,7 +84,7 @@ class Product_Editor {
 		$publishers = wp_get_post_terms( $product_id, 'book_publisher', array( 'fields' => 'names' ) );
 		woocommerce_wp_text_input( array(
 			'id'    => '_book_publisher_name',
-			'label' => __( 'Publisher', 'wc-flavor-books' ),
+			'label' => __( 'Publisher', 'shelvd' ),
 			'value' => is_wp_error( $publishers ) ? '' : implode( ', ', $publishers ),
 		) );
 
@@ -92,15 +92,15 @@ class Product_Editor {
 		$languages = wp_get_post_terms( $product_id, 'book_language', array( 'fields' => 'names' ) );
 		woocommerce_wp_text_input( array(
 			'id'    => '_book_language_name',
-			'label' => __( 'Language', 'wc-flavor-books' ),
+			'label' => __( 'Language', 'shelvd' ),
 			'value' => is_wp_error( $languages ) ? '' : implode( ', ', $languages ),
 		) );
 
 		// Original language.
 		woocommerce_wp_text_input( array(
 			'id'          => '_book_original_language',
-			'label'       => __( 'Original Language', 'wc-flavor-books' ),
-			'description' => __( 'If this book is a translation.', 'wc-flavor-books' ),
+			'label'       => __( 'Original Language', 'shelvd' ),
+			'description' => __( 'If this book is a translation.', 'shelvd' ),
 			'desc_tip'    => true,
 			'value'       => $meta['original_language'] ?? '',
 		) );
@@ -110,7 +110,7 @@ class Product_Editor {
 		// Year.
 		woocommerce_wp_text_input( array(
 			'id'                => '_book_year',
-			'label'             => __( 'Publication Year', 'wc-flavor-books' ),
+			'label'             => __( 'Publication Year', 'shelvd' ),
 			'type'              => 'number',
 			'custom_attributes' => array( 'min' => '1400', 'max' => gmdate( 'Y' ) + 2, 'step' => '1' ),
 			'value'             => $meta['year'] ?? '',
@@ -119,7 +119,7 @@ class Product_Editor {
 		// Pages.
 		woocommerce_wp_text_input( array(
 			'id'                => '_book_pages',
-			'label'             => __( 'Pages', 'wc-flavor-books' ),
+			'label'             => __( 'Pages', 'shelvd' ),
 			'type'              => 'number',
 			'custom_attributes' => array( 'min' => '1', 'step' => '1' ),
 			'value'             => $meta['pages'] ?? '',
@@ -128,7 +128,7 @@ class Product_Editor {
 		// Edition.
 		woocommerce_wp_text_input( array(
 			'id'    => '_book_edition',
-			'label' => __( 'Edition', 'wc-flavor-books' ),
+			'label' => __( 'Edition', 'shelvd' ),
 			'value' => $meta['edition'] ?? '',
 		) );
 
@@ -137,31 +137,31 @@ class Product_Editor {
 		// Condition.
 		woocommerce_wp_select( array(
 			'id'      => '_book_condition',
-			'label'   => __( 'Condition', 'wc-flavor-books' ),
+			'label'   => __( 'Condition', 'shelvd' ),
 			'value'   => $meta['condition'] ?? '',
 			'options' => array(
-				''          => __( '— Select —', 'wc-flavor-books' ),
-				'new'       => __( 'New', 'wc-flavor-books' ),
-				'like-new'  => __( 'Like New', 'wc-flavor-books' ),
-				'very-good' => __( 'Very Good', 'wc-flavor-books' ),
-				'good'      => __( 'Good', 'wc-flavor-books' ),
-				'fair'      => __( 'Fair', 'wc-flavor-books' ),
-				'poor'      => __( 'Poor', 'wc-flavor-books' ),
+				''          => __( '— Select —', 'shelvd' ),
+				'new'       => __( 'New', 'shelvd' ),
+				'like-new'  => __( 'Like New', 'shelvd' ),
+				'very-good' => __( 'Very Good', 'shelvd' ),
+				'good'      => __( 'Good', 'shelvd' ),
+				'fair'      => __( 'Fair', 'shelvd' ),
+				'poor'      => __( 'Poor', 'shelvd' ),
 			),
 		) );
 
 		// Format.
 		woocommerce_wp_select( array(
 			'id'      => '_book_format',
-			'label'   => __( 'Format', 'wc-flavor-books' ),
+			'label'   => __( 'Format', 'shelvd' ),
 			'value'   => $meta['format'] ?? '',
 			'options' => array(
-				''          => __( '— Select —', 'wc-flavor-books' ),
-				'hardcover' => __( 'Hardcover', 'wc-flavor-books' ),
-				'paperback' => __( 'Paperback', 'wc-flavor-books' ),
-				'pocket'    => __( 'Pocket', 'wc-flavor-books' ),
-				'ebook'     => __( 'E-book', 'wc-flavor-books' ),
-				'audiobook' => __( 'Audiobook', 'wc-flavor-books' ),
+				''          => __( '— Select —', 'shelvd' ),
+				'hardcover' => __( 'Hardcover', 'shelvd' ),
+				'paperback' => __( 'Paperback', 'shelvd' ),
+				'pocket'    => __( 'Pocket', 'shelvd' ),
+				'ebook'     => __( 'E-book', 'shelvd' ),
+				'audiobook' => __( 'Audiobook', 'shelvd' ),
 			),
 		) );
 
@@ -207,7 +207,7 @@ class Product_Editor {
 		 *
 		 * @param int $product_id Product ID.
 		 */
-		do_action( 'wc_flavor_books_product_saved', $product_id );
+		do_action( 'shelvd_product_saved', $product_id );
 	}
 
 	/**

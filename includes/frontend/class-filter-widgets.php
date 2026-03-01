@@ -2,14 +2,14 @@
 /**
  * Filter Widgets.
  *
- * @package WC_Flavor_Books
+ * @package Shelvd
  */
 
-namespace WC_Flavor_Books\Frontend;
+namespace Shelvd\Frontend;
 
 defined( 'ABSPATH' ) || exit;
 
-use WC_Flavor_Books\Traits\Singleton;
+use Shelvd\Traits\Singleton;
 
 /**
  * Registers sidebar filter widgets for book taxonomies.
@@ -23,8 +23,8 @@ class Filter_Widgets {
 	 */
 	private function __construct() {
 		add_action( 'widgets_init', array( $this, 'register_widgets' ) );
-		add_action( 'wp_ajax_wc_flavor_books_filter', array( $this, 'ajax_filter' ) );
-		add_action( 'wp_ajax_nopriv_wc_flavor_books_filter', array( $this, 'ajax_filter' ) );
+		add_action( 'wp_ajax_shelvd_filter', array( $this, 'ajax_filter' ) );
+		add_action( 'wp_ajax_nopriv_shelvd_filter', array( $this, 'ajax_filter' ) );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Filter_Widgets {
 	 * Handle AJAX filtering.
 	 */
 	public function ajax_filter() {
-		check_ajax_referer( 'wc-flavor-books-filter', 'nonce' );
+		check_ajax_referer( 'shelvd-filter', 'nonce' );
 
 		$args = array(
 			'post_type'      => 'product',
@@ -89,7 +89,7 @@ class Filter_Widgets {
 			}
 			woocommerce_product_loop_end();
 		} else {
-			echo '<p class="woocommerce-info">' . esc_html__( 'No books found matching your criteria.', 'wc-flavor-books' ) . '</p>';
+			echo '<p class="woocommerce-info">' . esc_html__( 'No books found matching your criteria.', 'shelvd' ) . '</p>';
 		}
 		$html = ob_get_clean();
 		wp_reset_postdata();
@@ -112,9 +112,9 @@ class Book_Author_Widget extends \WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'wc_flavor_books_author',
-			__( 'Book Authors Filter', 'wc-flavor-books' ),
-			array( 'description' => __( 'Filter products by book author.', 'wc-flavor-books' ) )
+			'shelvd_author',
+			__( 'Book Authors Filter', 'shelvd' ),
+			array( 'description' => __( 'Filter products by book author.', 'shelvd' ) )
 		);
 	}
 
@@ -129,7 +129,7 @@ class Book_Author_Widget extends \WP_Widget {
 			return;
 		}
 
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Authors', 'wc-flavor-books' );
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Authors', 'shelvd' );
 		$count = ! empty( $instance['count'] ) ? (int) $instance['count'] : 20;
 
 		$terms = get_terms( array(
@@ -147,7 +147,7 @@ class Book_Author_Widget extends \WP_Widget {
 		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo $args['before_title'] . esc_html( $title ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput
 
-		echo '<ul class="wc-flavor-books-filter-list" data-taxonomy="book_author">';
+		echo '<ul class="shelvd-filter-list" data-taxonomy="book_author">';
 		foreach ( $terms as $term ) {
 			$active = is_tax( 'book_author', $term->term_id ) ? ' class="active"' : '';
 			printf(
@@ -170,15 +170,15 @@ class Book_Author_Widget extends \WP_Widget {
 	 * @param array $instance Instance.
 	 */
 	public function form( $instance ) {
-		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Authors', 'wc-flavor-books' );
+		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Authors', 'shelvd' );
 		$count = isset( $instance['count'] ) ? (int) $instance['count'] : 20;
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wc-flavor-books' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'shelvd' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Number to show:', 'wc-flavor-books' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Number to show:', 'shelvd' ); ?></label>
 			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" type="number" value="<?php echo esc_attr( $count ); ?>" min="1" max="200" />
 		</p>
 		<?php
@@ -209,9 +209,9 @@ class Book_Publisher_Widget extends \WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'wc_flavor_books_publisher',
-			__( 'Book Publishers Filter', 'wc-flavor-books' ),
-			array( 'description' => __( 'Filter products by publisher.', 'wc-flavor-books' ) )
+			'shelvd_publisher',
+			__( 'Book Publishers Filter', 'shelvd' ),
+			array( 'description' => __( 'Filter products by publisher.', 'shelvd' ) )
 		);
 	}
 
@@ -226,7 +226,7 @@ class Book_Publisher_Widget extends \WP_Widget {
 			return;
 		}
 
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Publishers', 'wc-flavor-books' );
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Publishers', 'shelvd' );
 		$count = ! empty( $instance['count'] ) ? (int) $instance['count'] : 20;
 
 		$terms = get_terms( array(
@@ -244,7 +244,7 @@ class Book_Publisher_Widget extends \WP_Widget {
 		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo $args['before_title'] . esc_html( $title ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput
 
-		echo '<ul class="wc-flavor-books-filter-list" data-taxonomy="book_publisher">';
+		echo '<ul class="shelvd-filter-list" data-taxonomy="book_publisher">';
 		foreach ( $terms as $term ) {
 			$active = is_tax( 'book_publisher', $term->term_id ) ? ' class="active"' : '';
 			printf(
@@ -267,15 +267,15 @@ class Book_Publisher_Widget extends \WP_Widget {
 	 * @param array $instance Instance.
 	 */
 	public function form( $instance ) {
-		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Publishers', 'wc-flavor-books' );
+		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Publishers', 'shelvd' );
 		$count = isset( $instance['count'] ) ? (int) $instance['count'] : 20;
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wc-flavor-books' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'shelvd' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Number to show:', 'wc-flavor-books' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>"><?php esc_html_e( 'Number to show:', 'shelvd' ); ?></label>
 			<input class="tiny-text" id="<?php echo esc_attr( $this->get_field_id( 'count' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'count' ) ); ?>" type="number" value="<?php echo esc_attr( $count ); ?>" min="1" max="200" />
 		</p>
 		<?php
@@ -306,9 +306,9 @@ class Book_Language_Widget extends \WP_Widget {
 	 */
 	public function __construct() {
 		parent::__construct(
-			'wc_flavor_books_language',
-			__( 'Book Languages Filter', 'wc-flavor-books' ),
-			array( 'description' => __( 'Filter products by language.', 'wc-flavor-books' ) )
+			'shelvd_language',
+			__( 'Book Languages Filter', 'shelvd' ),
+			array( 'description' => __( 'Filter products by language.', 'shelvd' ) )
 		);
 	}
 
@@ -323,7 +323,7 @@ class Book_Language_Widget extends \WP_Widget {
 			return;
 		}
 
-		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Languages', 'wc-flavor-books' );
+		$title = ! empty( $instance['title'] ) ? $instance['title'] : __( 'Languages', 'shelvd' );
 
 		$terms = get_terms( array(
 			'taxonomy'   => 'book_language',
@@ -339,7 +339,7 @@ class Book_Language_Widget extends \WP_Widget {
 		echo $args['before_widget']; // phpcs:ignore WordPress.Security.EscapeOutput
 		echo $args['before_title'] . esc_html( $title ) . $args['after_title']; // phpcs:ignore WordPress.Security.EscapeOutput
 
-		echo '<ul class="wc-flavor-books-filter-list" data-taxonomy="book_language">';
+		echo '<ul class="shelvd-filter-list" data-taxonomy="book_language">';
 		foreach ( $terms as $term ) {
 			$active = is_tax( 'book_language', $term->term_id ) ? ' class="active"' : '';
 			printf(
@@ -362,10 +362,10 @@ class Book_Language_Widget extends \WP_Widget {
 	 * @param array $instance Instance.
 	 */
 	public function form( $instance ) {
-		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Languages', 'wc-flavor-books' );
+		$title = isset( $instance['title'] ) ? $instance['title'] : __( 'Languages', 'shelvd' );
 		?>
 		<p>
-			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'wc-flavor-books' ); ?></label>
+			<label for="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>"><?php esc_html_e( 'Title:', 'shelvd' ); ?></label>
 			<input class="widefat" id="<?php echo esc_attr( $this->get_field_id( 'title' ) ); ?>" name="<?php echo esc_attr( $this->get_field_name( 'title' ) ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
 		</p>
 		<?php
