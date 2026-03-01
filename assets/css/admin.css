@@ -1,0 +1,51 @@
+/**
+ * WC Flavor: Books — Admin Styles
+ */
+
+/* Book Details tab icon */
+#woocommerce-product-data ul.wc-tabs li.book_details_options a::before {
+	content: "\f330";
+	font-family: dashicons;
+}
+
+/* Book Details panel */
+#book_details_product_data {
+	padding: 12px;
+}
+
+#book_details_product_data .form-field {
+	padding: 5px 20px 5px 162px;
+}
+
+#book_details_product_data .form-field label {
+	width: 150px;
+	margin-left: -162px;
+	float: left;
+}
+
+/* ISBN lookup button */
+.wc-flavor-books-isbn-lookup {
+	display: inline-block;
+	margin-left: 8px;
+	vertical-align: middle;
+}
+
+.wc-flavor-books-isbn-lookup .button {
+	vertical-align: middle;
+}
+
+.wc-flavor-books-isbn-status {
+	display: inline-block;
+	margin-left: 8px;
+	font-style: italic;
+	color: #666;
+	vertical-align: middle;
+}
+
+.wc-flavor-books-isbn-status.success {
+	color: #46b450;
+}
+
+.wc-flavor-books-isbn-status.error {
+	color: #dc3232;
+}

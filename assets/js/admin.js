@@ -1,0 +1,74 @@
+/**
+ * WC Flavor: Books — Admin JS
+ *
+ * Handles ISBN lookup button in the product editor.
+ */
+(function ($) {
+	'use strict';
+
+	var $isbnField   = $('#_book_isbn');
+	var $lookupBtn   = $('#wc-flavor-books-isbn-lookup');
+	var $statusEl    = $('#wc-flavor-books-isbn-status');
+
+	if (!$isbnField.length || !$lookupBtn.length) {
+		return;
+	}
+
+	$lookupBtn.on('click', function (e) {
+		e.preventDefault();
+
+		var isbn = $.trim($isbnField.val());
+		if (!isbn) {
+			$statusEl.text(wcFlavorBooksAdmin.i18n.invalidIsbn).removeClass('success').addClass('error');
+			return;
+		}
+
+		$lookupBtn.prop('disabled', true);
+		$statusEl.text(wcFlavorBooksAdmin.i18n.lookingUp).removeClass('success error');
+
+		$.post(wcFlavorBooksAdmin.ajaxUrl, {
+			action: 'wc_flavor_books_isbn_lookup',
+			nonce:  wcFlavorBooksAdmin.nonce,
+			isbn:   isbn
+		}, function (response) {
+			$lookupBtn.prop('disabled', false);
+
+			if (!response.success || !response.data) {
+				$statusEl.text(wcFlavorBooksAdmin.i18n.notFound).removeClass('success').addClass('error');
+				return;
+			}
+
+			var data = response.data;
+
+			// Fill in fields.
+			if (data.title)     { $('#title').val(data.title); }
+			if (data.authors)   { $('#_book_author_input').val(data.authors.join(', ')); }
+			if (data.publisher) { $('#_book_publisher_input').val(data.publisher); }
+			if (data.year)      { $('#_book_year').val(data.year); }
+			if (data.pages)     { $('#_book_pages').val(data.pages); }
+			if (data.language)  { $('#_book_language_input').val(data.language); }
+
+			// Description.
+			if (data.description) {
+				var $descField = $('#excerpt');
+				if ($descField.length) {
+					$descField.val(data.description);
+				}
+				// Also try TinyMCE editor.
+				if (typeof tinyMCE !== 'undefined') {
+					var editor = tinyMCE.get('excerpt');
+					if (editor) {
+						editor.setContent(data.description);
+					}
+				}
+			}
+
+			$statusEl.text(wcFlavorBooksAdmin.i18n.found).removeClass('error').addClass('success');
+
+		}).fail(function () {
+			$lookupBtn.prop('disabled', false);
+			$statusEl.text(wcFlavorBooksAdmin.i18n.error).removeClass('success').addClass('error');
+		});
+	});
+
+})(jQuery);
